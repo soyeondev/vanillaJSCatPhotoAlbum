@@ -16,7 +16,6 @@ export default class App {
             keywords = [];
         }
 
-
         const getInitialData = async (keywords) => {
             if(keywords){
                 initialData = JSON.parse(getItem("recent"));

@@ -1,8 +1,8 @@
 export default class ResultSection{
-    constructor($target){
+    constructor($target, data){
         this.section = document.createElement("section");
         this.section.className = "result-section";
-        // this.data = data;
+        this.data = data;
         this.lastIdx = 0;
         $target.appendChild(this.section);
         this.render();

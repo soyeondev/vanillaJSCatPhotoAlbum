@@ -2,7 +2,7 @@ const API_ENDPOINT = "https://api.thecatapi.com/v1";
 
 const request = async (url) => {
     try {
-        const repsonse = await fetch(url);
+        const response = await fetch(url);
         if(response.ok){
             const data = await response.json();
             return data;
@@ -16,11 +16,12 @@ const request = async (url) => {
             status: e.status,
         }
     }
-}
+};
 
 const api = {
     fetchCats: async (keyword) => {
         try {
+            console.log("keyword: ", keyword);
             const breeds = await request(
                 `${API_ENDPOINT}/breeds/search?q=${keyword}`
             );
@@ -31,9 +32,26 @@ const api = {
             });
             const responses = await Promise.all(requests);
             const result = responses.reduce((acc, cur) => {
-                
-            });
+                acc = acc.concat(cur);
+                console.log("acc: ", acc);
+                return acc;
+            }, []);
+            return result;
         } catch(e) {
+            console.log(e);
+            return e;
+        }
+
+        console.log(result);
+    },
+
+    fetchRandomCats: async () => {
+        try{
+            const result = await request(
+                `${API_ENDPOINT}/images/search?limit=100`
+            );
+            return result;
+        }catch(e){
             return e;
         }
     }

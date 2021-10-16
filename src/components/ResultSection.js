@@ -41,6 +41,7 @@ export default class ResultSection{
         };
         const io = new IntersectionObserver(callback, options);
         const lazyImages = Array.from(document.getElementsByClassName("lazy"));
+        console.log("lazyImages: ", lazyImages);
         lazyImages.forEach((image) => {
             io.observe(image);
         })
@@ -67,6 +68,23 @@ export default class ResultSection{
                         new Card(cardContainer, cat);
                     });
                 }
+
+                // click event 
+                cardContainer.addEventListener("click", (e) => {
+                    console.log(e);
+                    const clickedCard = e.path.find(
+                        (p) => p.className == "card"
+                    );
+                    console.log("clickedCard :", clickedCard);
+                    if(clickedCard) {
+                        const id = clickedCard.dataset.id;
+                        const info = findInfoById(this.data, id);
+                        
+                    }
+                });
+
+
+
                 this.section.appendChild(cardContainer);
             } else {
                 const noResult = document.createElement("div");

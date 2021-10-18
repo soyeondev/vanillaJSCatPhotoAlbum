@@ -20,6 +20,14 @@ export default class SearchSection {
         }
     }
 
+    removeKeyword(kword) {
+        this.keywords = this.keywords.filter((word) => {
+            return word != kword;
+        });
+        setItem("keywords", this.keywords);
+        this.render();
+    }
+
     render() {
         this.section.innerHTML = "";
         
@@ -48,13 +56,14 @@ export default class SearchSection {
                 kword.innerText = word;
                 // 단어 클릭 시 검색
                 kword.addEventListener("click", (e) => {
+                    // 클릭 대상이 키워드인 경우
                     if(e.target.className == "keyword") {
                         this.onSearch(word, true);
+                    // 클릭 대상이 X인 경우
                     } else if(e.target.className == "delete-keyword"){
                         this.removeKeyword(word);
                     }
                 });
-
                 const deleteWord = document.createElement("span");
                 deleteWord.innerText = "X";
                 deleteWord.className = "delete-keyword";

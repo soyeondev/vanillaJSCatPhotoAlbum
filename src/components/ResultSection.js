@@ -7,10 +7,10 @@ export const findInfoById = (data, id) => {
 
 // 로드된 카드들의 마지막 인덱스를 구함
 export const getLastIdx = (data, lastIdx, offset) => {
-    console.log("getLastIdx data: ", data);
+    console.log("getLastIdx data: ", data.length);
     console.log("getLastIdx lastIdx: ", lastIdx);
     console.log("getLastIdx offset: ", offset);
-    // 데이터의 
+    // 오프셋보다 더 적게 데이터가 들어가 있는 경우나 모두 로드된 경우
     if(data.length < offset || lastIdx > data.length - offset){
         return data.length;
     } else {

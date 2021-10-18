@@ -11,12 +11,21 @@ export default class SearchSection {
         this.render();
     }
 
+    // 키워드 추가
     addKeyword(keyword) {
-        if(this.keywords.length >= 5) this.keywords.shift();
+        console.log("keyword 1: ", keyword);
+        console.log("keywords 1: ", this.keywords);
+        if(this.keywords.length >= 5) {
+            this.keywords.shift();  // 첫번째 인자를 삭제
+            console.log("keywords 2: ", this.keywords);
+            console.log("keyword 2: ", keyword);
+        }
+        // 검색된 키워드가 없는경우 배열에 추가
         if(this.keywords.indexOf(keyword) == -1){
             this.keywords = this.keywords.concat([keyword]);
+            console.log("keywordssss: ", this.keywords);
             setItem("keywords", this.keywords);
-            this.render();
+            this.render();  // 배열에 변화가 있는 경우에만 render()함수를 호출해줌
         }
     }
 

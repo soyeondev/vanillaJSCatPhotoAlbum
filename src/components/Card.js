@@ -17,7 +17,7 @@ export default class Card {
 
         const cardImage = document.createElement("img");
         cardImage.className = "card-image";
-        cardImage.classList.add("lazy");
+        cardImage.classList.add("lazy");    // 이미지 로드를 위해 lazy 클래스를 추가
         cardImage.dataset.src = url;
 
         const cardInfo = document.createElement("article");

@@ -13,23 +13,19 @@ export default class SearchSection {
 
     // 키워드 추가
     addKeyword(keyword) {
-        console.log("keyword 1: ", keyword);
-        console.log("keywords 1: ", this.keywords);
         if(this.keywords.length >= 5) {
             this.keywords.shift();  // 첫번째 인자를 삭제
-            console.log("keywords 2: ", this.keywords);
-            console.log("keyword 2: ", keyword);
         }
         // 검색된 키워드가 없는경우 배열에 추가
         if(this.keywords.indexOf(keyword) == -1){
             this.keywords = this.keywords.concat([keyword]);
-            console.log("keywordssss: ", this.keywords);
-            setItem("keywords", this.keywords);
-            this.render();  // 배열에 변화가 있는 경우에만 render()함수를 호출해줌
+            this.render();  // 배열에 변화가 있는 경우에만 render()함수를 호출
         }
     }
 
+    // 키워드 삭제
     removeKeyword(kword) {
+        // 선택된 키워드를 제외한 배열을 리턴
         this.keywords = this.keywords.filter((word) => {
             return word != kword;
         });
@@ -39,7 +35,6 @@ export default class SearchSection {
 
     render() {
         this.section.innerHTML = "";
-        
         
         const wrapper = document.createElement("div");
         wrapper.className = "wrapper";
@@ -65,10 +60,10 @@ export default class SearchSection {
                 kword.innerText = word;
                 // 단어 클릭 시 검색
                 kword.addEventListener("click", (e) => {
-                    // 클릭 대상이 키워드인 경우
+                    // 키워드 클릭시
                     if(e.target.className == "keyword") {
                         this.onSearch(word, true);
-                    // 클릭 대상이 X인 경우
+                    // X 클릭시
                     } else if(e.target.className == "delete-keyword"){
                         this.removeKeyword(word);
                     }
